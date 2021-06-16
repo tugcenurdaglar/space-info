@@ -1,12 +1,14 @@
 package com.tugcenurdaglar.space;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import com.tugcenurdaglar.space.adapter.Adapter;
@@ -23,8 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Repo> repoArrayList;
 
     private Adapter adapter;
-
-
+    
     RestInterface restInterface;
 
     @Override
@@ -35,13 +36,8 @@ public class MainActivity extends AppCompatActivity {
         rv = findViewById(R.id.rv);
 
         rv.setHasFixedSize(true);
-        rv.setLayoutManager(new LinearLayoutManager(this));
 
-
-
-
-
-
+        rv.setLayoutManager(new GridLayoutManager(rv.getContext(), 3));
 
 
         restInterface = ApiClient.getClient().create(RestInterface.class);
@@ -69,5 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
     }
+
 }
